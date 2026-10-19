@@ -1,0 +1,43 @@
+/* =============================================
+    SISTEMA MUSICAL: Folha de Estilos Principal
+    =============================================
+    Um único arquivo para TODAS as telas. Ele cresce a cada aula:
+    Aula 1: base, formulário, botões, login e menu
+    Aula 2: títulos, barra de título, cores dos botões, tabelas e filtros
+    Aula 3: formulário em grade, campo de foto e botão de músicas
+    Aula 4: url e textarea, campo "full", utilitários e celular
+============================================= */
+
+
+/* ----------------------------------------------
+    1. VARIÁVEIS E RESET  [AULA 1]
+----------------------------------------------- */
+/*  :root guarda as variáveis. Escrevemos o valor UMA vez e usamos
+    em todo lugar com var(--nome). Para mudar a identidade visual do
+    sistema, basta trocar as cores aqui. */
+
+    :root {
+        --primary:      #2c3e50;  /* azul bem escuro: títulos, cabeçalho da tabela */
+        --blue:         #3498db; /* azul: botão principal e editar */
+        --blue-dark:    #2980b9; /* azul escuro: hover */
+        --green:        #2ecc71; /* verde: botão de músicas */
+        --red:          #e74c3c; /* vermelho: excluir e o * de obrigatório */
+        --red-dark:     #c0392b;
+        --bg:           #f0f2f5;   /* fundo cinza claro da página */
+        --surface:      #ffffff;   /* fundo dos cartões */
+        --border:       #dde1e7;   
+        --text:         #2c3e50; /* cor das bordas */
+        --text-muted:   #6c757d;   /* texto cinza, menos importante */
+        --shadow-sm:    0 1px 3px rgba(0,0,0,.08);    /* sombra fraca */
+        --shadow-md:    0 4px 12px rgba(0,0,0,.10);   /* sombra média */
+        --radius:       8px;       
+        --font:         'Segoe UI', system-ui, -apple-system, sans-serif; /* arredondamento dos cantos */
+    }
+
+    /*  Reset: zera as margens que o navegador coloca sozinho. 
+        box-sizing: border-box faz a largura já incluir padding e borda. */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
