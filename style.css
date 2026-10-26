@@ -10,7 +10,7 @@
 
 
 /* ----------------------------------------------
-  1. VARIÁVEIS E RESET  [AULA 1]
+  1. VARIÁVEIS E RESET  [AULA 01]
 ----------------------------------------------- */
 /* :root guarda as variáveis. Escrevemos o valor UMA vez e usamos
    em todo lugar com var(--nome). Para mudar a identidade visual do
@@ -52,7 +52,7 @@ body {
 
 
 /* ----------------------------------------------
-  2. FORMULÁRIOS  [AULA 1]
+  2. FORMULÁRIOS  [AULA 01]
   Base usada por TODAS as telas que têm <form>.
 ----------------------------------------------- */
 /* Todo formulário vira um cartão branco com sombra. */
@@ -106,7 +106,7 @@ select:focus {
 
 
 /* ----------------------------------------------
-  3. BOTÕES  [AULA 1, cores novas nas aulas 2 e 3]
+  3. BOTÕES  [AULA 01, cores novas nas aulas 2 e 3]
 ----------------------------------------------- */
 /* Seletor em grupo (vírgulas): TODOS os botões do sistema têm o
    mesmo formato. Cada um ganha a sua cor mais abaixo. */
@@ -157,7 +157,7 @@ select:focus {
 
 
 /* ----------------------------------------------
-  5. TELA DE LOGIN  [AULA 1]
+  4. TELA DE LOGIN  [AULA 01]
 ----------------------------------------------- */
 /* O body do login vira flex para centralizar o cartão:
    justify-content = horizontal, align-items = vertical. */
@@ -233,7 +233,7 @@ select:focus {
 
 
 /* ----------------------------------------------
-  6. LAYOUT BASE  [AULA 1]
+  5. LAYOUT BASE  [AULA 01]
   O container de todas as telas, menos o login.
 ----------------------------------------------- */
 /* Largura máxima de 1200px. margin: 0 auto centraliza a caixa. */
@@ -245,7 +245,7 @@ select:focus {
 
 
 /* ----------------------------------------------
-  7. MENU PRINCIPAL  [AULA 1]
+  6. MENU PRINCIPAL  [AULA 01]
 ----------------------------------------------- */
 /* flex-end empurra o botão Sair para a direita. */
 .topbar {
@@ -319,4 +319,189 @@ select:focus {
 .menu-card-desc { 
    font-size: .85rem; 
    color: var(--text-muted); 
+}
+
+/* [AULA 02] Cores dos botões de ação da tabela.
+   Azul = ação normal. Vermelho = perigo (excluir).  */
+.btn-edit { background: var(--blue); color: #fff; }
+.btn-edit:hover { background: var(--blue-dark); }
+.btn-delete { background: var(--red); color: #fff; }
+.btn-delete:hover { background: var(--red-dark); }
+
+/* [Aula 02] O vermelho do Youtube, para reconhecer na hora  */
+.btn-youtube { background: #ff0000; color: #fff; }
+.btn-youtube:hover { background: #cc0000; }
+
+/* -----------------------------------------------
+   7. TIPOGRAFIA  [AULA 02]
+----------------------------------------------- */
+/* Todo h2 do sistema: grande, cor principal e uma linha embaixo */
+h2 {
+   font-size: 1.75rem;
+   font-weight: 600;
+   color: var(--primary);
+   margin-bottom: 1.5rem;
+   padding-bottom: .75rem;
+   border-bottom: 2px solid var(--border);
+}
+
+/* -----------------------------------------------
+   8. CABEÇALHO DE PÁGINA COM AÇÕES [AULA 02]
+   Usado na Biblioteca e nos dois cadastros
+----------------------------------------------- */
+/* space-between: título na esquerda, botões na direita.
+flex-wrap: se faltar espaço, os botões descem */
+.page-header-bar {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   gap: 1rem;
+   margin-bottom: 1.5rem;
+   padding-bottom: .75rem;
+   border-bottom: 2px solid var(--border);
+   flex-wrap: wrap;
+}
+
+/* A barra já tem linha embaixo. Tiramos a linha do h2 que está dentro dela, senão ficam duas */
+.page-header-bar h2 {
+   margin: 0;
+   padding: 0;
+   border: none;
+   font-size: 1.75rem;
+   font-weight: 600;
+   color: var(--primary);
+}
+
+.page-header-bar .header-actions {
+   display: flex;
+   gap: .6rem;
+   flex-wrap: wrap;
+   align-items: center;
+}
+
+/* -----------------------------------------------
+   9. TABELAS [AULA 02]
+----------------------------------------------- */
+/* A caixa da tabela. overflow: hidden corta o que passar dos cantos 
+   redondos (senão o cabeçalho escuro "vaza" no canto). */
+
+.table-container {
+   background: var(--surface);
+   border-radius: var(--radius);
+   box-shadow: var(--shadow-md);
+   overflow: hidden;
+   margin-bottom: 1.5rem;
+}
+
+/* border-collapse: as bordas das celulas viram uma só. */
+table {
+   width: 100%;
+   border-collapse: collapse;
+}
+
+/* Espaço dentro das células e uma linha fina entre elas */
+th, td {
+   padding: 12px, 16px;
+   text-align: left;
+   vertical-align: middle;
+   border-bottom: 1px solid var(--border);
+}
+
+/* Cabeçalho escuro, letra branca e MAIÚSCULAS */
+th {
+   background: var(--primary);
+   color: #fff;
+   font-size: .82rem;
+   font-weight: 600;
+   letter-spacing: .04em;
+   text-transform: uppercase;
+   white-space: nowrap;
+}
+
+tbody tr:last-child td { border-bottom: none; }    /* a última linha sem borda */
+tbody tr:hover { background: #f8fafc; }          /* linha clareia com o mouse */
+
+/* Larguras fixas das colunas pequenas */
+.col-foto,
+.col-capa { width: 90px; white-space: nowrap; }
+.col-youtube { width: 110px; white-space: nowrap; }
+.col-acoes { white-space: nowrap; }
+
+/* Editar, Exluir (e Músicas) lado a lado */
+.action-buttons {
+   display: flex;
+   gap: 6rem;
+   align-items: center;
+   flex-wrap: nowrap;
+}
+
+/* [Sprint 2] A miniatura da caoa ou da foto de verdade */
+.table-thumbnail {
+   width: 60px;
+   height: 60px;
+   object-fit: cover;      /* corta a imagem para caber no quadrado */
+   border-radius: 6px;
+   display: block;
+}
+
+/* O quadrado "Sem capa/ Sem foto": borda tracejada e texto no meio */
+.no-image {
+   width: 60px;
+   height: 60px;
+   background: var(--bg);
+   border: 1.5px dashed var(--border);
+   border-radius: 6px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: .7rem;
+   color: var(--text-muted);
+   text-align: center;
+   line-height: 1.2;
+}
+
+/* [Sprint 2] Célula de "nenhuma música encontrada". */
+td.empty-cell {
+   text-align: center;
+   color: var(--text-muted);
+   padding: 2rem;
+   font-size: .95rem;
+}
+
+/* -----------------------------------------------
+   10. FILTROS [AULA 02]
+----------------------------------------------- */
+.filters {
+   background: var(--surface);
+   padding: 1.25rem 1.5rem;
+   border-radius: var(--radius);
+   box-shadow: var(--shadow-md);
+   margin-bottom: 1.5rem;
+   border: 1px solid var(--border);
+
+}
+
+/* Os filtros lado a lado. flex-wrap: descem se não couber */
+.filter-group {
+   display: flex;
+   gap: 1rem;
+   flex-wrap: wrap;
+   margin-bottom: 1rem;
+}
+
+/* flex: 1 = cada filtro pega a mesma fatia de espaço 
+   min width impede que fique fino demais */
+.filter-item {
+   flex: 1;
+   min-width: 180px;
+}
+
+.filter-item label {
+   font-size: .82rem;
+}
+
+.filter-actions {
+   display: flex;
+   gap: .75rem;
+   align-items: center;
 }
