@@ -1,13 +1,3 @@
-# 🧠 PROJETO SISTEMA MUSICAL — FASE 2: Backend Completo (PHP + MySQL)
-
-Nesta fase vamos transformar os arquivos `.html` estáticos da Fase 1 em páginas `.php` totalmente funcionais: login com sessão e senha criptografada, banco de dados MySQL, CRUD completo de artistas e músicas, upload/redimensionamento de imagens e uma biblioteca musical com filtros dinâmicos.
-
-**Como este roteiro é organizado:** cada etapa acrescenta **uma capacidade nova** ao arquivo, nunca tudo de uma vez. Nas páginas de CRUD (artistas e músicas), que são as mais longas, você vai construir o arquivo em **camadas**: primeiro só listar os dados que já existem no banco, depois cadastrar novos, depois editar e excluir, e só por último o upload de imagem. A cada camada o arquivo `.php` fica maior, mas sempre funcional e testável sozinho.
-
-> Pré-requisitos: um ambiente PHP + MySQL rodando localmente (XAMPP, WAMP, Laragon ou similar), com a extensão **GD** habilitada (necessária para redimensionar imagens) e o **phpMyAdmin** disponível para rodar o script SQL.
-
----
-
 ## 📂 Estrutura Final da Fase 2
 
 ```text
@@ -47,61 +37,6 @@ touch bd.sql conexao.php geraSenha.php valida_sessao.php logout.php
 `styles.css` continua exatamente igual — nenhuma alteração necessária, já que toda a Fase 1 foi construída pensando nisso.
 
 ---
-
-## ETAPA 1 — Banco de Dados
-
-Abra o phpMyAdmin (normalmente em `http://localhost/phpmyadmin`), vá em **SQL** e cole o conteúdo abaixo em `bd.sql`, depois execute:
-
-```sql
--- Criar banco de dados com nome modificado
-CREATE DATABASE sistema_musical_v2;
-
--- Usar o banco de dados
-USE sistema_musical_v2;
-
--- Criar tabela de usuários
-CREATE TABLE usuarios (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    usuario VARCHAR(50) NOT NULL,
-    senha VARCHAR(255) NOT NULL
-);
-
--- Criar tabela de artistas (removido biografia, email e website)
-CREATE TABLE artistas (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
-    genero VARCHAR(50),
-    pais VARCHAR(50),
-    imagem VARCHAR(255)
-);
-
--- Criar tabela de músicas (modificada para incluir link do YouTube e remover campos)
-CREATE TABLE musicas (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    artista_id INT,
-    titulo VARCHAR(100) NOT NULL,
-    album VARCHAR(100),
-    genero VARCHAR(50),
-    youtube_link VARCHAR(255), -- Novo campo para link do YouTube
-    letra TEXT,
-    imagem_capa VARCHAR(255),
-    FOREIGN KEY (artista_id) REFERENCES artistas(id)
-);
-
--- Inserir usuário padrão "admin" e senha "123"
-INSERT INTO usuarios (usuario, senha) VALUES ('admin', '$2y$12$zw1c2aDgt4HHnAzXc3g3dOV6Mn96Dm2UaSIketIhYe1xmtuaJG6qa');
-```
-
-> A senha `123` do usuário `admin` já está inserida como **hash bcrypt** (Caso  precise gere uma nova usando o arquivo abaixo. Nunca guarde senhas em texto puro no banco.
-
-## Gerar senha segura (`geraSenha.php`)
-```php
-
-<?php
-// Rodar no terminal php geraSenha.php
-echo password_hash('123', PASSWORD_BCRYPT);
-
-```
 
 ### ✅ Teste da Etapa 1
 1. No phpMyAdmin, clique no banco `sistema_musical_v2` na coluna esquerda.
